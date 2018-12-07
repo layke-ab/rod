@@ -16,7 +16,7 @@ let query: RODQuery = {
         }
     ],
     predicate: {
-        logical_connetive_operator: "and",
+        logical_connective_operator: "and",
         lhs: {
             comparison_operator: "gt",
             lhs: { literal:  "43"  },

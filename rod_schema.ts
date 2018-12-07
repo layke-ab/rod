@@ -44,7 +44,7 @@ type ComparisonExpression = {
 }
 
 type LogicalConnectiveExpression = {
-    logical_connetive_operator: "and" | "or"
+    logical_connective_operator: "and" | "or"
     lhs: ComparisonExpression | LogicalConnectiveExpression
     rhs: ComparisonExpression | LogicalConnectiveExpression
 }
