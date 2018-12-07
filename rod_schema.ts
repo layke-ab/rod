@@ -2,7 +2,7 @@
 // (ROD Obscure Data language)
 
 interface Column {
-   column: {  // Pool name
+    column: {  // Pool name
         pool: string;
         // Dataset name in pool
         dataset: string;
@@ -20,9 +20,10 @@ type AggregateFunction = "avg" | "sum" | "max" | "count"
 
 // Represents a selectable field
 export interface Field {
+    identifier: Column
     // Optional aggregate function
-    aggregateFunction?: AggregateFunction
-    alias?: string
+    aggregate_function: AggregateFunction | null
+    alias: string | null
 }
 
 // Query document version, used for backwards compatibility
@@ -83,7 +84,7 @@ let query: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregateFunction: null,
+            aggregate_function: null,
             alias: null
         }
     ],
@@ -134,7 +135,7 @@ let query_with_no_predicate: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregateFunction: null,
+            aggregate_function: null,
             alias: null
         }
     ],
@@ -174,7 +175,7 @@ let query_with_predicate: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregateFunction: null,
+            aggregate_function: null,
             alias: null
         }
     ],
@@ -213,7 +214,7 @@ let query2: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregateFunction: null,
+            aggregate_function: null,
             alias: null
         }
     ],
