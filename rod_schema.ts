@@ -20,7 +20,7 @@ type AggregateFunction = "avg" | "sum" | "max" | "count"
 
 // Represents a selectable field
 export interface Field {
-    identifier: Column
+    identifier: Atom
     // Optional aggregate function
     aggregate_function: AggregateFunction | null
     alias: string | null
