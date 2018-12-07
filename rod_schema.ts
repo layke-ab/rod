@@ -19,8 +19,7 @@ interface Literal {
 type AggregateFunction = "avg" | "sum" | "max" | "count"
 
 // Represents a selectable field
-interface Field {
-    identifier: Atom
+export interface Field {
     // Optional aggregate function
     aggregateFunction?: AggregateFunction
     alias?: string
@@ -53,13 +52,13 @@ interface SortDescriptor {
     order: "asc" | "desc"
 }
 
-type RODQuery = {
+export type RODQuery = {
     version: QueryDocumentVersion
     fields: Field[]
     predicate: PredicateExpression | ComparisonExpression | null
     sort_descriptors: SortDescriptor[]
     group_by: Column[]
-}
+} 
 
 type PredicateExpressionFunction = (lhs: PredicateExpression["lhs"], rhs: PredicateExpression["rhs"]) => (PredicateExpression)
 const and: PredicateExpressionFunction = (lhs, rhs) => ({ predicate_operator: "and", lhs, rhs })
