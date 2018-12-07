@@ -1,0 +1,7 @@
+{
+  "name": "rod",
+  "version": "0.0.1",
+  "main": "rod_schema.ts",
+  "repository": "git@github.com:layke-ab/rod.git",
+  "private": true
+}

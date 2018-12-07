@@ -2,7 +2,7 @@
 // (ROD Obscure Data language)
 
 interface Column {
-   column: {  // Pool name
+    column: {  // Pool name
         pool: string;
         // Dataset name in pool
         dataset: string;
@@ -19,11 +19,11 @@ interface Literal {
 type AggregateFunction = "avg" | "sum" | "max" | "count"
 
 // Represents a selectable field
-interface Field {
+export interface Field {
     identifier: Atom
     // Optional aggregate function
-    aggregateFunction?: AggregateFunction
-    alias?: string
+    aggregate_function: AggregateFunction | null
+    alias: string | null
 }
 
 // Query document version, used for backwards compatibility
@@ -53,13 +53,13 @@ interface SortDescriptor {
     order: "asc" | "desc"
 }
 
-type RODQuery = {
+export type RODQuery = {
     version: QueryDocumentVersion
     fields: Field[]
     predicate: PredicateExpression | ComparisonExpression | null
     sort_descriptors: SortDescriptor[]
     group_by: Column[]
-}
+} 
 
 type PredicateExpressionFunction = (lhs: PredicateExpression["lhs"], rhs: PredicateExpression["rhs"]) => (PredicateExpression)
 const and: PredicateExpressionFunction = (lhs, rhs) => ({ predicate_operator: "and", lhs, rhs })
@@ -84,7 +84,7 @@ let query: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregateFunction: null,
+            aggregate_function: null,
             alias: null
         }
     ],
@@ -135,7 +135,7 @@ let query_with_no_predicate: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregateFunction: null,
+            aggregate_function: null,
             alias: null
         }
     ],
@@ -175,7 +175,7 @@ let query_with_predicate: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregateFunction: null,
+            aggregate_function: null,
             alias: null
         }
     ],
@@ -214,7 +214,7 @@ let query2: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregateFunction: null,
+            aggregate_function: null,
             alias: null
         }
     ],
