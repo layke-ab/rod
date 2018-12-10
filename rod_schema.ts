@@ -1,7 +1,7 @@
 // Defines the ROD query languge
 // (ROD Obscure Data language)
 
-type Column = {
+export type Column = {
     column: {  // Pool name
         pool: string;
         // Dataset name in pool
@@ -11,14 +11,14 @@ type Column = {
     }
 }
 
-type DateString = string
+export type DateString = string
 
-type Literal = {
+export type Literal = {
     literal: string | number | DateString | null,
 }
 
 // Aggregate functions supported for numeric or date types
-type AggregateFunction = "avg" | "sum" | "max" | "count"
+export type AggregateFunction = "avg" | "sum" | "max" | "count"
 
 // Represents a selectable field
 export type Field = {
@@ -33,24 +33,24 @@ type QueryDocumentVersion = "1"
 
 // Supported literal
 // e.g. `1`, `"string"`
-type Atom =
+export type Atom =
     | Column
     | Literal
 
-type ComparisonExpression = {
+export type ComparisonExpression = {
     comparison_operator: "lt" | "gt" | "lte" | "gte" | "eq" | "neq"
     lhs: Atom
     rhs: Atom
 }
 
-type LogicalConnectiveExpression = {
+export type LogicalConnectiveExpression = {
     logical_connective_operator: "and" | "or"
     lhs: ComparisonExpression | LogicalConnectiveExpression
     rhs: ComparisonExpression | LogicalConnectiveExpression
 }
 
 // Sort descroptors is used to sort results
-type SortDescriptor = {
+export type SortDescriptor = {
     identifier: Atom
     aggregate_function: AggregateFunction | null
     order: "asc" | "desc"
