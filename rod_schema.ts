@@ -18,7 +18,7 @@ export type Literal = {
 }
 
 // Aggregate functions supported for numeric or date types
-export type AggregateFunction = "avg" | "sum" | "max" | "count"
+export type AggregateFunction = "avg" | "sum" | "max" | "min" | "count"
 
 // Represents a selectable field
 export type Field = {
