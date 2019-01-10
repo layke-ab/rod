@@ -6,7 +6,8 @@ export type Column = {
         pool: string;
         // Dataset name in pool
         dataset: string;
-        // Column name, dot separated for nested values
+        // Column name, several items for nested  values 
+        // i.e ["name","firstname"] -> name.firstname
         field_specifier: string[];
     }
 }
@@ -15,17 +16,6 @@ export type DateString = string
 
 export type Literal = {
     literal: string | number | DateString | null,
-}
-
-// Aggregate functions supported for numeric or date types
-export type AggregateFunction = "avg" | "sum" | "max" | "count"
-
-// Represents a selectable field
-export type Field = {
-    identifier: Atom
-    // Optional aggregate function
-    aggregate_function: AggregateFunction | null
-    alias: string | null
 }
 
 // Query document version, used for backwards compatibility
@@ -37,29 +27,37 @@ export type Atom =
     | Column
     | Literal
 
-export type ComparisonExpression = {
-    comparison_operator: "lt" | "gt" | "lte" | "gte" | "eq" | "neq"
-    lhs: Atom
-    rhs: Atom
+type AggregateFunctionName = "max" | "min"
+type NonAggregateFunctionName = "and" | "or" | "lt" | "gt" | "lte" | "gte" | "eq" | "neq"
+type ArithmeticFunctionName = "add" | "subtract" | "multiply" | "divide" | "sin" | "cos" 
+
+type Function = {
+    func: {
+        name: AggregateFunctionName | NonAggregateFunctionName | ArithmeticFunctionName,
+        args: FunctionArg[]
+    }
 }
 
-export type LogicalConnectiveExpression = {
-    logical_connective_operator: "and" | "or"
-    lhs: ComparisonExpression | LogicalConnectiveExpression
-    rhs: ComparisonExpression | LogicalConnectiveExpression
-}
+
+type Expression = Function | Atom
+
+type FunctionArg = Expression 
+
+// Represents a selectable field
+export type Field = {
+    identifier: Expression,
+    alias: string | null
+} 
 
 // Sort descroptors is used to sort results
 export type SortDescriptor = {
-    identifier: Atom
-    aggregate_function: AggregateFunction | null
     order: "asc" | "desc"
-}
+} & Column
 
 export type RODQuery = {
     version: QueryDocumentVersion
     fields: Field[]
-    predicate: LogicalConnectiveExpression | ComparisonExpression | null
+    predicate: Expression |  null
     sort_descriptors: SortDescriptor[]
     group_by: Column[]
 }

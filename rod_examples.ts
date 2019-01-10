@@ -1,5 +1,72 @@
 import { RODQuery } from "./rod_schema";
 
+
+
+
+
+
+let query_3: RODQuery = {
+    version: "1",
+    fields: [
+        {
+            identifier:{
+                column: {
+                    pool: "pool",
+                    dataset: "dataset",
+                    field_specifier: ["column"]
+                }
+            },
+            alias: null
+        },
+        {
+            identifier:{
+                func:{
+                    name: "max",
+                    args: [{
+                        column: {
+                            pool: "pool",
+                            dataset: "dataset",
+                            field_specifier: ["column"]
+                        }
+                    }],
+                }
+            },
+            alias: null
+        }
+    ],
+
+    predicate:{
+        func:{
+            name: "max", 
+            args: [{
+                literal: 4
+            }]
+        } 
+    },
+    
+    sort_descriptors:[
+        {
+            column: {
+                pool: "pool",
+                dataset: "dataset",
+                field_specifier: ["column"]
+            },
+            order: "asc"
+        }
+    ],
+    
+    group_by:[
+        {
+            column: {
+                pool: "pool",
+                dataset: "dataset",
+                field_specifier: ["column"]
+            }
+        }
+    ]
+
+}
+
 let query: RODQuery = {
     version: "1",
     fields: [
@@ -11,33 +78,43 @@ let query: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregate_function: null,
             alias: null
         }
     ],
     predicate: {
-        logical_connective_operator: "and",
-        lhs: {
-            comparison_operator: "gt",
-            lhs: { literal:  "43"  },
-            rhs: { literal:  "43" },
-        },
-        rhs: {
-            comparison_operator: "eq",
-            lhs: { column: { pool: "pool", dataset: "dataset", field_specifier: ["column"] }},
-            rhs: { literal: 10 },
+        func:{
+            name: "and",
+            args: [
+                {
+                    func: {
+                        name: "gt",
+                        args: [
+                            {literal: 43},
+                            {literal: 43}
+                        ]
+                    }
+                },
+                {
+                    func: {
+                        name: "eq",
+                        args: [
+                            { column: { pool: "pool", dataset: "dataset", field_specifier: ["column"] }},
+                            { literal: 10 }
+                        ]
+                    }
+                }
+            ]
+
         }
+
     },
     sort_descriptors: [
         {
-           identifier: {
-                column: {
-                    pool: "pool",
-                    dataset: "dataset",
-                    field_specifier: ["column"]
-                }
+            column: {
+                pool: "pool",
+                dataset: "dataset",
+                field_specifier: ["column"]
             },
-            aggregate_function: null,
             order: "asc",
         }
     ],
@@ -63,22 +140,18 @@ let query_with_no_predicate: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregate_function: null,
             alias: null
         }
     ],
     predicate: null,
     sort_descriptors: [
         {
-            identifier: {
-                column: {
-                    pool: "pool",
-                    dataset: "dataset",
-                    field_specifier: ["column"]
+            column: {
+                pool: "pool",
+                dataset: "dataset",
+                field_specifier: ["column"]
 
-                }
             },
-            aggregate_function: null,
             order: "desc"
         }
     ],
