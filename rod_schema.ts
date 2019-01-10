@@ -27,7 +27,7 @@ export type Atom =
     | Column
     | Literal
 
-type AggregateFunctionName = "max" | "min"
+type AggregateFunctionName = "avg" | "sum" | "max" | "min" | "count"
 type NonAggregateFunctionName = "and" | "or" | "lt" | "gt" | "lte" | "gte" | "eq" | "neq"
 type ArithmeticFunctionName = "add" | "subtract" | "multiply" | "divide" | "sin" | "cos" 
 

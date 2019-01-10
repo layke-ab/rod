@@ -177,30 +177,28 @@ let query_with_predicate: RODQuery = {
                     field_specifier: ["column"]
                 }
             },
-            aggregate_function: null,
             alias: null
         }
     ],
     predicate: {
-        comparison_operator: "eq",
-        lhs: {
-            literal: 40,
-        },
-        rhs: {
-            literal: 40,
-        },
+        func:{
+            name: "eq",
+            args: [
+                    {literal: 40},
+                    {literal: 40}
+            ]
+
+        }
+
     },
     sort_descriptors: [
         {
-            identifier: {
-                column: {
-                    pool: "pool",
-                    dataset: "dataset",
-                    field_specifier: ["column"]
-                },
+            column: {
+                pool: "pool",
+                dataset: "dataset",
+                field_specifier: ["column"]
             },
-            aggregate_function: null,
-            order: "desc"
+        order: "desc"
         }
     ],
     group_by: [
