@@ -6,7 +6,7 @@ import { RODQuery } from "./rod_schema";
 
 
 let query_3: RODQuery = {
-    version: "1",
+    version: "2",
     fields: [
         {
             identifier:{
@@ -68,7 +68,7 @@ let query_3: RODQuery = {
 }
 
 let query: RODQuery = {
-    version: "1",
+    version: "2",
     fields: [
         {
             identifier: {
@@ -130,7 +130,7 @@ let query: RODQuery = {
 }
 
 let query_with_no_predicate: RODQuery = {
-    version: "1",
+    version: "2",
     fields: [
         {
             identifier: {
@@ -167,7 +167,7 @@ let query_with_no_predicate: RODQuery = {
 }
 
 let query_with_predicate: RODQuery = {
-    version: "1",
+    version: "2",
     fields: [
         {
             identifier: {

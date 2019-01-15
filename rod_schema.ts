@@ -19,7 +19,7 @@ export type Literal = {
 }
 
 // Query document version, used for backwards compatibility
-type QueryDocumentVersion = "1"
+type QueryDocumentVersion = "2"
 
 // Supported literal
 // e.g. `1`, `"string"`
