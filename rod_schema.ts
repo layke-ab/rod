@@ -19,7 +19,7 @@ export type Literal = {
 }
 
 // Query document version, used for backwards compatibility
-type QueryDocumentVersion = "2"
+export type QueryDocumentVersion = "2"
 
 // Supported literal
 // e.g. `1`, `"string"`
@@ -27,11 +27,11 @@ export type Atom =
     | Column
     | Literal
 
-type AggregateFunctionName = "avg" | "sum" | "max" | "min" | "count"
-type NonAggregateFunctionName = "and" | "or" | "lt" | "gt" | "lte" | "gte" | "eq" | "neq"
-type ArithmeticFunctionName = "add" | "subtract" | "multiply" | "divide" | "sin" | "cos" 
+export type AggregateFunctionName = "avg" | "sum" | "max" | "min" | "count"
+export type NonAggregateFunctionName = "and" | "or" | "lt" | "gt" | "lte" | "gte" | "eq" | "neq"
+export type ArithmeticFunctionName = "add" | "subtract" | "multiply" | "divide" | "sin" | "cos" 
 
-type Function = {
+export type Function = {
     func: {
         name: AggregateFunctionName | NonAggregateFunctionName | ArithmeticFunctionName,
         args: FunctionArg[]
@@ -39,9 +39,9 @@ type Function = {
 }
 
 
-type Expression = Function | Atom
+export type Expression = Function | Atom
 
-type FunctionArg = Expression 
+export type FunctionArg = Expression 
 
 // Represents a selectable field
 export type Field = {
