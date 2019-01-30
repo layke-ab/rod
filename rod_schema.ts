@@ -60,4 +60,5 @@ export type RODQuery = {
     predicate: Expression |  null
     sort_descriptors: SortDescriptor[]
     group_by: Column[]
+    limit: number 
 }
