@@ -2,14 +2,12 @@
 // (ROD Obscure Data language)
 
 export type Column = {
-    column: {  // Pool name
-        pool: string;
-        // Dataset name in pool
-        dataset: string;
-        // Column name, several items for nested  values 
-        // i.e ["name","firstname"] -> name.firstname
-        field_specifier: string[];
-    }
+    pool: string;
+    // Dataset name in pool
+    dataset: string;
+    // Column name, several items for nested  values 
+    // i.e ["name","firstname"] -> name.firstname
+    field_specifier: string[];
 }
 
 export type DateString = string
@@ -32,12 +30,9 @@ export type NonAggregateFunctionName = "and" | "or" | "lt" | "gt" | "lte" | "gte
 export type ArithmeticFunctionName = "add" | "subtract" | "multiply" | "divide" | "sin" | "cos" 
 
 export type Function = {
-    func: {
-        name: AggregateFunctionName | NonAggregateFunctionName | ArithmeticFunctionName,
-        args: FunctionArg[]
-    }
+    name: AggregateFunctionName | NonAggregateFunctionName | ArithmeticFunctionName,
+    args: FunctionArg[]
 }
-
 
 export type Expression = Function | Atom
 
