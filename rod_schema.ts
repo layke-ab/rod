@@ -2,6 +2,7 @@
 // (ROD Obscure Data language)
 
 export type Column = {
+    type: "column";
     pool: string;
     // Dataset name in pool
     dataset: string;
@@ -13,6 +14,7 @@ export type Column = {
 export type DateString = string
 
 export type Literal = {
+    type: "literal";
     literal: string | number | DateString | null,
 }
 
@@ -29,14 +31,13 @@ export type AggregateFunctionName = "avg" | "sum" | "max" | "min" | "count"
 export type NonAggregateFunctionName = "and" | "or" | "lt" | "gt" | "lte" | "gte" | "eq" | "neq"
 export type ArithmeticFunctionName = "add" | "subtract" | "multiply" | "divide" | "sin" | "cos" 
 
-export type Function = {
-    name: AggregateFunctionName | NonAggregateFunctionName | ArithmeticFunctionName,
-    args: FunctionArg[]
-}
-
 export type Expression = Function | Atom
 
-export type FunctionArg = Expression 
+export type Function = {
+    type: "function"
+    name: AggregateFunctionName | NonAggregateFunctionName | ArithmeticFunctionName,
+    args: Expression[]
+}
 
 // Represents a selectable field
 export type Field = {
